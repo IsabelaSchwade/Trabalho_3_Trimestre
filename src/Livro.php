@@ -64,7 +64,7 @@ class Livro implements ActiveRecord{
         foreach($resultados as $resultado){
             $f = new livro($resultado['nomeLivro'],$resultado['imagemLivro']);
             $f->setIdLivro($resultado['idLivro']);
-            $festas[] = $f;
+            $livros[] = $f;
         }
         return $livros;
     }

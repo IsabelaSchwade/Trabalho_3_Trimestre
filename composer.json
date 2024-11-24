@@ -1,8 +1,15 @@
 {
-    "name": "isabelaschwade/trabalho_3_trimestre",
+    "name": "isabela-schwade/exercicio-festa1",
+    "autoload": {
+        "psr-4": {
+            "": "src/"
+        }
+    },
     "authors": [
+        
         {
-            "name": "Isabela Schwade"
+            "name": "Isabela Schwade",
+            "email": "isabelaschwade@gmail.com"
         }
     ],
     "require": {}
