@@ -23,15 +23,15 @@ $livros = Livro::findall(); // Corrigido para 'Livro'
     foreach($livros as $livro){
         echo "<tr>";
         echo "<td>{$livro->getNomeLivro()}</td>";
-        echo "<td>{$livro->getimagemLivro()}</td>";
+        echo "<td><img src='{$livro->getimagemLivro()}' style='max-width:100px; max-height:100px;'></td>";
         echo "<td>
-                <a href='formEdit.php?idLivro={$livro->getIdLivro()}'>Editar</a>
-                <a href='excluir.php?idLivro={$livro->getIdLivro()}'>Excluir</a> 
+                <a href='formEditarLivro.php?idLivro={$livro->getIdLivro()}'>Editar</a>
+                <a href='excluirLivro.php?idLivro={$livro->getIdLivro()}'>Excluir</a> 
              </td>";
         echo "</tr>";
     }
     ?>
 </table>
-<a href='formCad.php'>Adicionar Livro</a>
+<a href='formAddLivro.php'>Adicionar Livro</a>
 </body>
 </html>
