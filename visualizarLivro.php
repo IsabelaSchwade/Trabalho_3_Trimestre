@@ -13,21 +13,24 @@ $livros = Livro::findall(); // Corrigido para 'Livro'
 </head>
 <body>
 
-<table>
+<table border="1">
     <tr>
-        <td>Nome</td>
-        <td>Imagem</td>
-        <td>Ações</td>
+        <th>Nome</th>
+        <th>Imagem</th>
+        <th>Ações</th>
     </tr>
     <?php
     foreach($livros as $livro){
         echo "<tr>";
         echo "<td>{$livro->getNomeLivro()}</td>";
-        echo "<td><img src='{$livro->getimagemLivro()}' style='max-width:100px; max-height:100px;'></td>";
+        
+        // Exibe a imagem usando a tag <img> com o link armazenado
+        echo "<td><img src='{$livro->getImagemLivro()}' alt='Imagem de {$livro->getNomeLivro()}' width='100' height='150'></td>";
+        
         echo "<td>
                 <a href='formEditarLivro.php?idLivro={$livro->getIdLivro()}'>Editar</a>
                 <a href='excluirLivro.php?idLivro={$livro->getIdLivro()}'>Excluir</a> 
-             </td>";
+              </td>";
         echo "</tr>";
     }
     ?>
