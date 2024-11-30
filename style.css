@@ -1,0 +1,20 @@
+.star-rating {
+    display: inline-flex;
+    direction: row; /* Modificado para usar a direção padrão (da esquerda para a direita) */
+}
+
+.star-rating input[type="radio"] {
+    display: none;
+}
+
+.star-rating label {
+    font-size: 25px;
+    color: #ccc;
+    cursor: pointer;
+}
+
+.star-rating input[type="radio"]:checked ~ label,
+.star-rating label:hover,
+.star-rating label:hover ~ label {
+    color: gold;
+}
