@@ -27,20 +27,19 @@ class Livro implements ActiveRecord{
         $this->imagemLivro = $imagemLivro;
     }
 
-    public function getimagemLivro():string{
+    public function getImagemLivro(): string {
         return $this->imagemLivro;
     }
 
 
-    public function save():bool{
+    public function save(): bool {
         $conexao = new MySQL();
         if(isset($this->idLivro)){
-            $sql = "UPDATE livro SET nomeLivro = '{$this->nomeLivro}' ,imagemLivro = '{$this->imagemLivro}' WHERE idLivro = {$this->idLivro}";
-        }else{
-            $sql = "INSERT INTO livro (nomeLivro, imagemLivro) VALUES ('{$this->nomeLivro}','{$this->imagemLivro}')";
+            $sql = "UPDATE livro SET nomeLivro = '{$this->nomeLivro}', imagemLivro = '{$this->imagemLivro}' WHERE idLivro = {$this->idLivro}";
+        } else {
+            $sql = "INSERT INTO livro (nomeLivro, imagemLivro) VALUES ('{$this->nomeLivro}', '{$this->imagemLivro}')";
         }
         return $conexao->executa($sql);
-        
     }
     public function delete():bool{
         $conexao = new MySQL();
