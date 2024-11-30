@@ -13,22 +13,23 @@ class Login {
 
     public function autenticar(): bool {
         $conexao = new MySQL();
-        $email = $this->email;
-        $senha = $this->senha;
-
-        $sql = "SELECT * FROM usuario WHERE emailUsuario = '{$email}' AND senhaUsuario = '{$senha}'";
+        $sql = "SELECT * FROM usuario WHERE emailUsuario = '{$this->email}'";
         $resultado = $conexao->consulta($sql);
 
         if (count($resultado) === 1) {
-            session_start();
-            $_SESSION['usuario'] = $resultado[0]['nomeUsuario'];
-            $_SESSION['email'] = $resultado[0]['emailUsuario'];
-            return true;
+            $senhaHash = $resultado[0]['senhaUsuario'];
+            if (password_verify($this->senha, $senhaHash)) {
+                session_start();
+                $_SESSION['usuario'] = $resultado[0]['nomeUsuario'];
+                $_SESSION['email'] = $resultado[0]['emailUsuario'];
+                return true;
+            }
         }
 
         return false;
     }
 }
+
 
 // Verifica se os dados foram enviados pelo formulário
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
