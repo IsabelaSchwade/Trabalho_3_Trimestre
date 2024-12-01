@@ -26,7 +26,16 @@ class Ranking implements ActiveRecord {
 
     public function save(): bool {
         $conexao = new MySQL();
-        // Insere a avaliação do livro na tabela ranking
+    
+        // Verifica se o livro já foi avaliado
+        $sqlCheck = "SELECT COUNT(*) as total FROM ranking WHERE idDoLivro = {$this->idDoLivro}";
+        $result = $conexao->consulta($sqlCheck);
+        
+        if ($result[0]['total'] > 0) {
+            return false; // Já existe uma avaliação
+        }
+    
+        // Se não existirem avaliações, realiza a inserção
         $sql = "INSERT INTO ranking (idDoLivro, avaliaçao) VALUES ({$this->idDoLivro}, {$this->avaliaçao})";
         return $conexao->executa($sql);
     }

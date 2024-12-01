@@ -1,32 +1,38 @@
 <?php
-require_once __DIR__ . "/vendor/autoload.php"; // Carrega as classes e dependências
+require_once __DIR__ . "/vendor/autoload.php";
 
-// Verifica se o parâmetro idLivro foi passado na URL
 if (isset($_GET['idLivro'])) {
-    $idLivro = $_GET['idLivro']; // Recupera o id do livro da URL
-    $livro = Livro::find($idLivro); // Encontra o livro pelo ID
-    if (!$livro) {
-        die("Livro não encontrado.");
-    }
+    $idLivro = $_GET['idLivro'];
+    $livro = Livro::find($idLivro);
+
+
+// Nome do cookie baseado no ID do livro
+$cookieName = "avaliacao_{$idLivro}";
+
+// Verifica se o usuário já avaliou o livro com base no cookie
+if (isset($_COOKIE[$cookieName])) {
+    echo "<p>Você já avaliou este livro!</p>";
 } else {
-    die("ID do livro não especificado.");
+    // Verifica se o formulário foi enviado
+    if (isset($_POST['avaliacao'])) {
+        $avaliacao = $_POST['avaliacao'];
+
+        // Verifica se a avaliação já existe no banco de dados
+        require_once __DIR__ . "/src/Ranking.php";
+        $ranking = new Ranking($livro->getIdLivro(), (int)$avaliacao);
+
+        // Se a avaliação já foi salva para esse livro, exibe a mensagem
+        if ($ranking->save()) {
+            // Salva o cookie para garantir que o usuário não possa avaliar novamente
+            setcookie($cookieName, "avaliado", time() + (86400 * 30), "/"); // 30 dias de validade
+            header("Location: visualizarRanking.php?idLivro={$livro->getIdLivro()}");
+            exit();
+        } else {
+            // Caso a avaliação já tenha sido feita, exibe a mensagem de erro
+            echo "<p>Erro ao salvar a avaliação. Talvez você já tenha avaliado este livro.</p>";
+        }
+    } 
 }
-
-// Verifica se a avaliação foi enviada via POST
-if (isset($_POST['avaliacao'])) {
-    // Recupera a avaliação selecionada
-    $avaliacao = $_POST['avaliacao'];
-
-    // Certifique-se de que a classe Ranking está corretamente carregada
-    require_once __DIR__ . "/src/Ranking.php"; 
-
-    // Corrigindo a criação do objeto Ranking
-    $ranking = new Ranking($livro->getIdLivro(), $avaliacao); // Passa os dois parâmetros necessários
-    $ranking->save(); // Salva a avaliação no banco
-
-    // Redireciona para a página de visualização após salvar a avaliação
-    header("Location: visualizarLivro.php?idLivro={$livro->getIdLivro()}");
-    exit();
 }
 ?>
 
@@ -63,3 +69,4 @@ if (isset($_POST['avaliacao'])) {
     <p><a href="visualizarRanking.php">Voltar à lista de livros</a></p>
 </body>
 </html>
+        
