@@ -1,7 +1,10 @@
 <?php
- require_once __DIR__ . "/vendor/autoload.php";// carrega as classes e dependências
+require_once __DIR__ . "/vendor/autoload.php"; // carrega as classes e dependências
 
-// Consulta todos os livros, ordenando pela soma das avaliações
+// Verifica se a opção de ordenação foi passada na URL, senão, define como 'desc' por padrão
+$ordem = isset($_GET['ordem']) && $_GET['ordem'] == 'asc' ? 'asc' : 'desc';
+
+// Consulta todos os livros, ordenando pela soma das avaliações, conforme a direção escolhida
 $conexao = new MySQL();
 $sql = "
     SELECT livro.idLivro, livro.nomeLivro, livro.imagemLivro, 
@@ -9,7 +12,7 @@ $sql = "
     FROM livro
     LEFT JOIN ranking ON livro.idLivro = ranking.idDoLivro
     GROUP BY livro.idLivro
-    ORDER BY totalAvaliacoes DESC
+    ORDER BY totalAvaliacoes {$ordem}
 ";
 $livros = $conexao->consulta($sql);
 ?>
@@ -23,6 +26,16 @@ $livros = $conexao->consulta($sql);
 </head>
 <body>
 <h1>Ranking de Livros &#10084;&#65039; &#x1F4D6;</h1>
+
+<!-- Formulário para escolher a ordem de classificação -->
+<form method="get" action="visualizarRanking.php">
+    <label for="ordem">Ordenar por:</label>
+    <select name="ordem" id="ordem" onchange="this.form.submit()">
+        <option value="desc" <?php echo $ordem == 'desc' ? 'selected' : ''; ?>>Maior para Menor</option>
+        <option value="asc" <?php echo $ordem == 'asc' ? 'selected' : ''; ?>>Menor para Maior</option>
+    </select>
+</form>
+
 <table border="1">
     <thead>
         <tr>
