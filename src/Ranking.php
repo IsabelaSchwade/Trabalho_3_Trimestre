@@ -1,4 +1,5 @@
 <?php
+
 class Ranking implements ActiveRecord {
     private int $idDoLivro;
     private int $avaliaçao;
@@ -49,6 +50,27 @@ class Ranking implements ActiveRecord {
     }
 
     public static function findAll(): array {
-        // Método para buscar todas as avaliações, mas não utilizado no nosso exemplo
+        $conexao = new MySQL();
+        // Soma as avaliações para cada livro, agrupa por idLivro e ordena pela soma das avaliações em ordem decrescente
+        $sql = "SELECT idDoLivro, SUM(avaliaçao) AS soma_avaliacoes 
+                FROM ranking 
+                GROUP BY idDoLivro 
+                ORDER BY soma_avaliacoes DESC";
+        
+        $resultados = $conexao->consulta($sql);
+        
+        // Agora, com o ID dos livros e suas somas de avaliações, vamos buscar os livros
+        $livros = array();
+        foreach ($resultados as $resultado) {
+            $livro = Livro::find($resultado['idDoLivro']);
+            $livros[] = [
+                'livro' => $livro,
+                'soma_avaliacoes' => $resultado['soma_avaliacoes']
+            ];
+        }
+        
+        return $livros;
     }
 }
+
+?>
