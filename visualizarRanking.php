@@ -35,7 +35,7 @@ $livros = $conexao->consulta($sql);
         <option value="asc" <?php echo $ordem == 'asc' ? 'selected' : ''; ?>>Menor para Maior</option>
     </select>
 </form>
-
+<a href='formAddLivro.php'>Cadastrar novo livro</a>
 <table border="1">
     <thead>
         <tr>
@@ -65,6 +65,7 @@ $livros = $conexao->consulta($sql);
         ?>
     </tbody>
 </table>
+
 
 </body>
 </html>

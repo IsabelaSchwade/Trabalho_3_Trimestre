@@ -40,5 +40,7 @@ if(isset($_POST['botao'])){ // verifica se o formulário foi enviado
         <br>
         <input type='submit' name='botao' value='Adicionar'>
     </form>
+
+    <a href='visualizarRanking.php'>Voltar</a>
 </body>
 </html>

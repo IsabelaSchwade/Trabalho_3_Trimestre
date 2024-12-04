@@ -34,5 +34,7 @@ if(isset($_POST['botao'])){
         <br>
         <input type='submit' name='botao'>
     </form>
+
+    <a href='visualizarRanking.php'>Voltar</a>
 </body>
 </html>
