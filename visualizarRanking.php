@@ -43,19 +43,24 @@ $livros = $conexao->consulta($sql);
             <th>Nome</th>
             <th>Imagem</th>
             <th>Avaliação Total</th>
+            <th> Opções </th>
         </tr>
     </thead>
     <tbody>
         <?php
         $posicao = 1; // Inicializa a posição para classificação
-        foreach($livros as $livro){
+        foreach ($livros as $livro) {
             echo "<tr>";
-            echo "<td>{$posicao}º</td>"; // Exibe a posição do livro
+            echo "<td>{$posicao}º</td>"; 
             echo "<td>{$livro['nomeLivro']}</td>";
             echo "<td><img src='{$livro['imagemLivro']}' alt='Imagem de {$livro['nomeLivro']}' width='100' height='150'></td>";
-            echo "<td>{$livro['totalAvaliacoes']}</td>"; // Exibe a soma das avaliações
+            echo "<td>{$livro['totalAvaliacoes']}</td>";
+            echo "<td> <a href='formEditarLivro.php?idLivro={$livro['idLivro']}'>Editar</a> |
+                      <a href='excluirLivro.php?idLivro={$livro['idLivro']}'>Excluir</a>
+                       <a href='VisualizarLivro.php?idLivro={$livro['idLivro']}'>Visualizar</a>
+                  </td>";
             echo "</tr>";
-            $posicao++; // Incrementa a posição
+            $posicao++;
         }
         ?>
     </tbody>

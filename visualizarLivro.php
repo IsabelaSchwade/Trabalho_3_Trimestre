@@ -69,4 +69,3 @@ if (isset($_COOKIE[$cookieName])) {
     <p><a href="visualizarRanking.php">Voltar à lista de livros</a></p>
 </body>
 </html>
-        

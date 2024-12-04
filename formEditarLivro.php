@@ -11,7 +11,7 @@ if(isset($_POST['botao'])){
     $livro = new Livro($_POST['nome'],$_POST['imagem']); // cria uma nova insatancia da classe festa com os novos dados que foram enviados pelo formulario
     $livro->setIdLivro($_POST['idLivro']); // garante que a festa que vai ser atualizada é do mesmo id da festa selecionada
     $livro->save(); // salva os dados no banco
-    header("location: visualizarLivro.php"); 
+    header("location: visualizarRanking.php"); 
 }
 ?>
 <!DOCTYPE html>

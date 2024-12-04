@@ -6,6 +6,6 @@ $livro = Livro::find($_GET['idLivro']); // busca a festa fornecida pelo id atrav
     // como busca só um é usado o find
 
 $livro->delete(); // executa o metodo delete da classe festa
-header("location: visualizarLivro.php");
+header("location: visualizarRanking.php");
 
 ?>

@@ -39,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $login = new Login($email, $senha);
 
     if ($login->autenticar()) {
-        header("Location: visualizarLivro.php");
+        header("Location: visualizarRanking.php");
         exit();
     } else {
         echo "Usuário ou senha inválidos.";
