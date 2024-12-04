@@ -39,7 +39,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $login = new Login($email, $senha);
 
     if ($login->autenticar()) {
-        header("Location: visualizarRanking.php");
+        // Verifica se o usuário é admin
+        if ($email === 'admin@aluno.feliz.ifrs.edu.br') {
+            header("Location: visualizarRanking.php"); // Redireciona para o painel de admin
+        } else {
+            header("Location: visualizarRankingUsuario.php"); // Redireciona para a página de usuário comum
+        }
         exit();
     } else {
         echo "Usuário ou senha inválidos.";
