@@ -28,7 +28,7 @@ $livros = $conexao->consulta($sql);
 <h1>Ranking de Livros &#10084;&#65039; &#x1F4D6;</h1>
 
 <!-- Formulário para escolher a ordem de classificação -->
-<form method="get" action="visualizarRanking.php">
+<form method="get" action="visualizarRankingUsuario.php">
     <label for="ordem">Ordenar por:</label>
     <select name="ordem" id="ordem" onchange="this.form.submit()">
         <option value="desc" <?php echo $ordem == 'desc' ? 'selected' : ''; ?>>Maior para Menor</option>

@@ -25,7 +25,8 @@ if (isset($_COOKIE[$cookieName])) {
         if ($ranking->save()) {
             // Salva o cookie para garantir que o usuário não possa avaliar novamente
             setcookie($cookieName, "avaliado", time() + (86400 * 30), "/"); // 30 dias de validade
-            header("Location: visualizarRanking.php?idLivro={$livro->getIdLivro()}");
+            // Altere o redirecionamento para visualizarRankingUsuario.php
+            header("Location: visualizarRankingUsuario.php?idLivro={$livro->getIdLivro()}");
             exit();
         } else {
             // Caso a avaliação já tenha sido feita, exibe a mensagem de erro
@@ -54,7 +55,7 @@ if (isset($_COOKIE[$cookieName])) {
     </div>
 
     <h3>Avalie este livro</h3>
-    <form method="POST" action="visualizarLivro.php?idLivro=<?php echo $livro->getIdLivro(); ?>">
+    <form method="POST" action="visualizarLivroUsuario.php?idLivro=<?php echo $livro->getIdLivro(); ?>">
         <div class="star-rating">
             <?php
             // Cria os botões de estrelas para avaliação
