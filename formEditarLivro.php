@@ -1,32 +1,32 @@
 <?php
-if (isset($_GET['idLivro'])) { // Verifica se o idLivro está definido na URL
-    require_once __DIR__ . "/vendor/autoload.php";
+if (isset($_GET['idLivro'])) {
+    require_once _DIR_ . "/vendor/autoload.php";
     $livro = Livro::find($_GET['idLivro']); 
 }
 
-if (isset($_POST['botao'])) { // Verifica se o formulário foi enviado
-    require_once __DIR__ . "/vendor/autoload.php";
+if (isset($_POST['botao'])) { 
+    require_once _DIR_ . "/vendor/autoload.php";
 
     // Recupera o livro para atualização
     $livro = Livro::find($_POST['idLivro']);
-    $livro->setNomeLivro($_POST['nome']); // Atualiza o nome do livro
+    $livro->setNomeLivro($_POST['nome']);
 
     // Verifica se uma nova imagem foi enviada
     if (isset($_FILES['imagem']) && $_FILES['imagem']['error'] == 0) {
         $nomeArquivo = $_FILES['imagem']['name'];
-        $pastaDestino = 'uploads/'; // Pasta onde as imagens são armazenadas
+        $pastaDestino = 'uploads/'; 
         $caminhoCompleto = $pastaDestino . basename($nomeArquivo);
 
-        // Move a nova imagem para a pasta destino
+        
         if (move_uploaded_file($_FILES['imagem']['tmp_name'], $caminhoCompleto)) {
-            $livro->setImagemLivro($caminhoCompleto); // Atualiza o caminho da imagem no objeto
+            $livro->setImagemLivro($caminhoCompleto); 
         } else {
             echo "Erro ao salvar a nova imagem.";
             exit();
         }
     }
 
-    $livro->save(); // Salva as alterações no banco de dados
+    $livro->save(); 
     header("location: visualizarRanking.php"); 
     exit();
 }

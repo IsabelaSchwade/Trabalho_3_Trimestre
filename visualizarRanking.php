@@ -1,10 +1,9 @@
 <?php
-require_once __DIR__ . "/vendor/autoload.php"; // carrega as classes e dependências
+require_once __DIR__ . "/vendor/autoload.php"; 
 
-// Verifica se a opção de ordenação foi passada na URL, senão, define como 'desc' por padrão
 $ordem = isset($_GET['ordem']) && $_GET['ordem'] == 'asc' ? 'asc' : 'desc';
 
-// Consulta todos os livros, ordenando pela soma das avaliações, conforme a direção escolhida
+
 $conexao = new MySQL();
 $sql = "
     SELECT livro.idLivro, livro.nomeLivro, livro.imagemLivro, 
@@ -27,7 +26,7 @@ $livros = $conexao->consulta($sql);
 <body>
 <h1>Ranking de Livros &#10084;&#65039; &#x1F4D6;</h1>
 
-<!-- Formulário para escolher a ordem de classificação -->
+
 <form method="get" action="visualizarRanking.php">
     <label for="ordem">Ordenar por:</label>
     <select name="ordem" id="ordem" onchange="this.form.submit()">
@@ -48,7 +47,7 @@ $livros = $conexao->consulta($sql);
     </thead>
     <tbody>
         <?php
-        $posicao = 1; // Inicializa a posição para classificação
+        $posicao = 1; 
         foreach ($livros as $livro) {
             echo "<tr>";
             echo "<td>{$posicao}º</td>"; 

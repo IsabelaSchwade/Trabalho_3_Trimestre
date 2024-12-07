@@ -1,3 +1,4 @@
+
 <?php
 
 require_once __DIR__."/vendor/autoload.php";
@@ -31,7 +32,7 @@ class Login {
 }
 
 
-// Verifica se os dados foram enviados pelo formulário
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $_POST['email'] ?? '';
     $senha = $_POST['senha'] ?? '';
@@ -39,11 +40,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $login = new Login($email, $senha);
 
     if ($login->autenticar()) {
-        // Verifica se o usuário é admin
+       
         if ($email === 'admin@aluno.feliz.ifrs.edu.br') {
-            header("Location: visualizarRanking.php"); // Redireciona para o painel de admin
+            header("Location: visualizarRanking.php");
         } else {
-            header("Location: visualizarRankingUsuario.php"); // Redireciona para a página de usuário comum
+            header("Location: visualizarRankingUsuario.php"); 
         }
         exit();
     } else {

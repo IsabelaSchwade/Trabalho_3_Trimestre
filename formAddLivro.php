@@ -1,19 +1,21 @@
-<?php
-if(isset($_POST['botao'])){ // verifica se o formulário foi enviado
-    require_once __DIR__."/vendor/autoload.php";
 
-    // Verificar se o arquivo foi enviado corretamente
+
+<?php
+if(isset($_POST['botao'])){ 
+    require_once _DIR_."/vendor/autoload.php";
+
+    
     if(isset($_FILES['imagem']) && $_FILES['imagem']['error'] == 0){
         $nomeArquivo = $_FILES['imagem']['name'];
-        $pastaDestino = 'uploads/'; // Pasta onde as imagens serão armazenadas
+        $pastaDestino = 'uploads/'; 
         $caminhoCompleto = $pastaDestino . basename($nomeArquivo);
 
-        // Move o arquivo enviado para a pasta destino
+        
         if(move_uploaded_file($_FILES['imagem']['tmp_name'], $caminhoCompleto)){
-            // Criar nova instância de Livro com os dados do formulário
+            
             $livro = new Livro($_POST['nome'], $caminhoCompleto);
             $livro->save(); // Salva os dados no banco
-            header("location: visualizarLivro.php"); // Redireciona para a página de visualização
+            header("location: visualizarLivro.php"); 
             exit();
         } else {
             echo "Erro ao salvar a imagem.";
