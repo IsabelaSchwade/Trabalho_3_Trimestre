@@ -1,8 +1,7 @@
 
-
 <?php
 if(isset($_POST['botao'])){ 
-    require_once _DIR_."/vendor/autoload.php";
+    require_once __DIR__."/vendor/autoload.php";
 
     
     if(isset($_FILES['imagem']) && $_FILES['imagem']['error'] == 0){
@@ -34,6 +33,8 @@ if(isset($_POST['botao'])){
     <title>Adiciona Livro</title>
 </head>
 <body>
+<h1> Cadastrar Livro </h1>
+<br>
     <form action='formAddLivro.php' method='POST' enctype="multipart/form-data">
         Nome do livro: <input name='nome' type='text' required>
         <br>

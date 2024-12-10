@@ -1,11 +1,11 @@
 <?php
 if (isset($_GET['idLivro'])) {
-    require_once _DIR_ . "/vendor/autoload.php";
+    require_once __DIR__ . "/vendor/autoload.php";
     $livro = Livro::find($_GET['idLivro']); 
 }
 
 if (isset($_POST['botao'])) { 
-    require_once _DIR_ . "/vendor/autoload.php";
+    require_once __DIR__ . "/vendor/autoload.php";
 
     // Recupera o livro para atualização
     $livro = Livro::find($_POST['idLivro']);
@@ -40,6 +40,8 @@ if (isset($_POST['botao'])) {
     <title>Editar Livro</title>
 </head>
 <body>
+    <h1> Editar Livro </h1>
+    <br>
     <form action="formEditarLivro.php" method="POST" enctype="multipart/form-data">
         <?php
             echo "Nome do livro: <input name='nome' value='{$livro->getNomeLivro()}' type='text' required>";
