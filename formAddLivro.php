@@ -13,7 +13,7 @@ if(isset($_POST['botao'])){
             
             $livro = new Livro($_POST['nome'], $caminhoCompleto);
             $livro->save(); // Salva os dados no banco
-            header("location: visualizarLivro.php"); 
+            header("location: visualizarRanking.php"); 
             exit();
         } else {
             echo "Erro ao salvar a imagem.";
