@@ -5,7 +5,7 @@ if (isset($_GET['idLivro'])) {
     $idLivro = (int)$_GET['idLivro'];
     $livro = Livro::find($idLivro);
 
-    // Verifica se o formulário foi enviado
+  
     if (isset($_POST['avaliacao']) && isset($_POST['email'])) {
         $avaliacao = (int)$_POST['avaliacao'];
         $email = filter_var($_POST['email'], FILTER_VALIDATE_EMAIL);
@@ -13,14 +13,14 @@ if (isset($_GET['idLivro'])) {
         if (!$email) {
             echo "<p>E-mail inválido. Tente novamente.</p>";
         } else {
-            // Cria a instância de Ranking com o e-mail do usuário
+           
             $ranking = new Ranking($livro->getIdLivro(), $avaliacao, $email);
 
-            // Tenta salvar a avaliação
+          
             if ($ranking->save()) {
                 echo "<p>Avaliação salva com sucesso!</p>";
-                // Redireciona para evitar reenvio do formulário
-                header("Location: visualizarRanking.php");  // Alteração no redirecionamento
+                
+                header("Location: visualizarRanking.php");  
                 exit();
             } else {
                 echo "<p>Você já avaliou este livro com este e-mail.</p>";
@@ -36,19 +36,22 @@ if (isset($_GET['idLivro'])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel='stylesheet' type='text/css' href='style.css'>
+    <link rel='stylesheet' type='text/css' href='1.css'>
     <title>Visualizar Livro</title>
 </head>
 <body>
-    <h1>Detalhes do Livro</h1>
-    <div>
-        <h2><?php echo $livro->getNomeLivro(); ?></h2>
-        <img src="<?php echo $livro->getImagemLivro(); ?>" alt="Imagem de <?php echo $livro->getNomeLivro(); ?>" width="200" height="300">
+   
+ 
+        
+        <div class="book-cover">
+    <h1><?php echo $livro->getNomeLivro(); ?></h1>
+    <img src="<?php echo $livro->getImagemLivro(); ?>" alt="Imagem de <?php echo $livro->getNomeLivro(); ?>" width="200" height="300">
+</div>
     </div>
 
     <h3>Avalie este livro</h3>
-    <form method="POST" action="visualizarLivro.php?idLivro=<?php echo $livro->getIdLivro(); ?>"> <!-- Alteração no nome do arquivo -->
-        <div>
+    <form method="POST" action="visualizarLivro.php?idLivro=<?php echo $livro->getIdLivro(); ?>"> 
+    
             <label for="email">E-mail:</label>
             <input type="email" id="email" name="email" required>
         </div>
@@ -64,6 +67,9 @@ if (isset($_GET['idLivro'])) {
         <button type="submit">Avaliar</button>
     </form>
 
-    <p><a href="visualizarRanking.php">Voltar à lista de livros</a></p> <!-- Alteração no link de retorno -->
-</body>
+    <div class="center-div">
+    <p><a href='visualizarRankingUsuario.php'  class="logout-btn">Voltar à lista de livros</a></p>
+    <br>
+<a href='logout.php' class="logout-btn">Sair</a>
+    </div>
 </html>

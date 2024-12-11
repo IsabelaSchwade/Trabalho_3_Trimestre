@@ -1,4 +1,3 @@
-
 <?php
 if(isset($_POST['botao'])){ 
     require_once __DIR__."/vendor/autoload.php";
@@ -30,6 +29,7 @@ if(isset($_POST['botao'])){
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel='stylesheet' type='text/css' href='1.css'>
     <title>Adiciona Livro</title>
 </head>
 <body>
@@ -43,7 +43,9 @@ if(isset($_POST['botao'])){
         <br>
         <input type='submit' name='botao' value='Adicionar'>
     </form>
-
+    <div class="center-div">
     <a href='visualizarRanking.php'>Voltar</a>
+    
+</div>
 </body>
 </html>

@@ -1,5 +1,4 @@
 <?php
-
 class Livro implements ActiveRecord{
 
     private int $idLivro;
@@ -66,7 +65,5 @@ class Livro implements ActiveRecord{
             $livros[] = $f;
         }
         return $livros;
-    }
-
-    
+    }  
 }

@@ -19,6 +19,7 @@ $livros = $conexao->consulta($sql);
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel='stylesheet' type='text/css' href='1.css'>
     <title>Ranking dos Livros</title>
 </head>
 <body>
@@ -38,8 +39,7 @@ $livros = $conexao->consulta($sql);
         <tr>
             <th>Posição</th>
             <th>Nome</th>
-            <th>Imagem</th>
-            <th>Avaliação Total</th>
+            <th>Capa</th>
             <th> Opções </th>
         </tr>
     </thead>
@@ -51,7 +51,6 @@ $livros = $conexao->consulta($sql);
             echo "<td>{$posicao}º</td>"; 
             echo "<td>{$livro['nomeLivro']}</td>";
             echo "<td><img src='{$livro['imagemLivro']}' alt='Imagem de {$livro['nomeLivro']}' width='100' height='150'></td>";
-            echo "<td>{$livro['totalAvaliacoes']}</td>";
             echo "<td> <a href='VisualizarLivroUsuario.php?idLivro={$livro['idLivro']}'>Visualizar</a>
                   </td>";
             echo "</tr>";
@@ -60,8 +59,8 @@ $livros = $conexao->consulta($sql);
         ?>
     </tbody>
 </table>
-
-<a href='logout.php'>Sair</a>
-
+<div class="center-div">
+<a href='logout.php' class="logout-btn">Sair</a>
+    </div>
 </body>
 </html>

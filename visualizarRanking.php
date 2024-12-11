@@ -21,6 +21,7 @@ $livros = $conexao->consulta($sql);
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel='stylesheet' type='text/css' href='1.css'>
     <title>Ranking dos Livros</title>
 </head>
 <body>
@@ -34,14 +35,15 @@ $livros = $conexao->consulta($sql);
         <option value="asc" <?php echo $ordem == 'asc' ? 'selected' : ''; ?>>Menor para Maior</option>
     </select>
 </form>
+<div class="center-div">
 <a href='formAddLivro.php'>Cadastrar novo livro</a>
+</div>
 <table border="1">
     <thead>
         <tr>
             <th>Posição</th>
             <th>Nome</th>
-            <th>Imagem</th>
-            <th>Avaliação Total</th>
+            <th>Capa</th>
             <th> Opções </th>
         </tr>
     </thead>
@@ -53,7 +55,6 @@ $livros = $conexao->consulta($sql);
             echo "<td>{$posicao}º</td>"; 
             echo "<td>{$livro['nomeLivro']}</td>";
             echo "<td><img src='{$livro['imagemLivro']}' alt='Imagem de {$livro['nomeLivro']}' width='100' height='150'></td>";
-            echo "<td>{$livro['totalAvaliacoes']}</td>";
             echo "<td> <a href='formEditarLivro.php?idLivro={$livro['idLivro']}'>Editar</a> |
                       <a href='excluirLivro.php?idLivro={$livro['idLivro']}'>Excluir</a>
                        <a href='VisualizarLivro.php?idLivro={$livro['idLivro']}'>Visualizar</a>
@@ -65,6 +66,9 @@ $livros = $conexao->consulta($sql);
     </tbody>
 </table>
 
+<div class="center-div">
+<a href='logout.php' class="logout-btn">Sair</a>
+    </div>
 
 </body>
 </html>

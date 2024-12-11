@@ -1,0 +1,179 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color:  #f1f1f1; 
+    color: #6d3f6d; 
+    margin: 0;
+    padding: 0;
+}
+
+h1, h2, h3 {
+    text-align: center;
+    color: #ff80bf; 
+}
+
+h1 {
+    font-size: 2.5rem;
+    margin-top: 30px;
+}
+
+h2 {
+    font-size: 2rem;
+    margin-top: 20px;
+}
+
+h3 {
+    font-size: 1.5rem;
+    margin-top: 10px;
+}
+
+p {
+    text-align: center;
+    font-size: 1.1rem;
+    margin-top: 15px;
+}
+
+
+form {
+    background-color: #fff5f7; 
+    border-radius: 8px;
+    padding: 20px;
+    margin: 0 auto;
+    width: 50%;
+    max-width: 600px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="file"],
+select {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #ff80bf; 
+    border-radius: 5px;
+    background-color: #fff;
+}
+
+input[type="submit"],
+button {
+    background-color: #ff80bf; 
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 5px;
+    width: 100%;
+}
+
+input[type="submit"]:hover,
+button:hover {
+    background-color: #ff66b2; 
+}
+
+a {
+    color: #ff80bf; 
+    text-decoration: none;
+    font-size: 1rem;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+
+table {
+    width: 80%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+th, td {
+    padding: 12px;
+    text-align: center;
+    border: 1px solid #ff80bf; 
+}
+
+th {
+    background-color: #ffb3d9;
+    color: #6d3f6d; 
+}
+
+td {
+    background-color: #fff5f7; 
+}
+
+td a {
+    color: #6d3f6d; 
+}
+
+td a:hover {
+    color: #ff80bf; 
+}
+
+
+.star-rating {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.star-rating input[type="radio"] {
+    display: none;
+}
+
+.star-rating label {
+    font-size: 2rem;
+    color: #ff80bf;
+    cursor: pointer;
+    margin: 0 5px;
+}
+
+.star-rating input[type="radio"]:checked ~ label {
+    color:gold;
+}
+
+.book-cover {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+.book-cover img {
+    border-radius: 10px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+}
+
+.voltar-link {
+    display: inline-block;  
+    padding: 12px 20px;
+    background-color: #ff80bf; 
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    text-align: center;
+    margin-top: 30px;
+    width: 200px;  
+    text-align: center;
+}
+
+.voltar-link:hover {
+    background-color: #ff66b2;
+}
+
+
+.center-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;  
+}
+
+
