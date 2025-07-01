@@ -23,7 +23,7 @@ $livros = $conexao->consulta($sql);
     <title>Ranking dos Livros</title>
 </head>
 <body>
-<h1>Ranking de Livros &#10084;&#65039; &#x1F4D6;</h1>
+<h1>Book Match &#10084;&#65039; &#x1F4D6;</h1>
 
 
 <form method="get" action="visualizarRankingUsuario.php">

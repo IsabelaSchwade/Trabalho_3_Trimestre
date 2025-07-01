@@ -53,7 +53,7 @@ if (isset($_GET['idLivro'])) {
         </div>
         <div class="star-rating">
             <?php
-            for ($i = 5; $i >= 1; $i--) {
+            for ($i = 1; $i >= 5; $i++) {
                 echo "<input type='radio' id='estrela{$i}' name='avaliacao' value='{$i}' required> 
                       <label for='estrela{$i}'>★</label>";
             }

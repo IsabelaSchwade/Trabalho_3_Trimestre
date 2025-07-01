@@ -70,7 +70,7 @@ class Ranking implements ActiveRecord {
         $result = $conexao->consulta($sql);
 
         if (empty($result)) {
-            return null; 
+            return null; // avaliação não encontrada
         }
 
         $ranking = new Ranking(
